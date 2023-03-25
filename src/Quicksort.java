@@ -1,6 +1,4 @@
-import java.util.Comparator;
 import java.util.LinkedList;
-import java.util.Queue;
 
 public class Quicksort {
 
@@ -30,5 +28,29 @@ public class Quicksort {
             S.add(Equal.remove());     // Combine the Equal list into Single list until Empty
         while (!Greater.isEmpty())
             S.add(Greater.remove());   // Combine the Greater list into Single list until Empty
+    }
+
+    public static void quicksortInPlace(int[] S, int a, int b) {
+        if (a >= b) return;
+        int left = a;
+        int right = b-1;
+        int pivot = S[b];
+        int temp;
+        while (left <= right) {
+            while (left <= right && S[left] < pivot)
+                left++;
+            while (left <= right && S[right] > pivot)
+                right--;
+            if (left <= right) {
+                temp = S[left];
+                S[left] = S[right];
+                S[right] = temp;
+                left++;
+                right--;
+            }
+        }
+        temp = S[left]; S[left] = S[b]; S[b] = temp;
+        quicksortInPlace(S, a, left-1);
+        quicksortInPlace(S, left+1, b);
     }
 }
