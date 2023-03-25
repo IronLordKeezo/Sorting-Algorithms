@@ -1,3 +1,4 @@
+import java.util.Comparator;
 import java.util.LinkedList;
 
 public class Quicksort {
@@ -52,5 +53,31 @@ public class Quicksort {
         temp = S[left]; S[left] = S[b]; S[b] = temp;
         quicksortInPlace(S, a, left-1);
         quicksortInPlace(S, left+1, b);
+    }
+
+    public static void quicksortStrings(LinkedList<String> S, Comparator<String> comp) {
+        int n = S.size();
+        if (n < 2) return;
+        String pivot = S.getFirst();
+        LinkedList<String> L = new LinkedList<>();
+        LinkedList<String> E = new LinkedList<>();
+        LinkedList<String> G = new LinkedList<>();
+        while (!S.isEmpty()) {
+            String next = S.remove();
+            if (comp.compare(next, pivot) < 0)
+                L.add(next);
+            else if (comp.compare(next, pivot) == 0)
+                E.add(next);
+            else
+                G.add(next);
+        }
+        quicksortStrings(L, comp);
+        quicksortStrings(G, comp);
+
+        while (!L.isEmpty())
+            S.add(L.remove());
+        S.add(E.remove());
+        while (!G.isEmpty())
+            S.add(G.remove());
     }
 }
