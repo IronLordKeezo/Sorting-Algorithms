@@ -6,7 +6,7 @@ public class Quicksort {
 
     public static void quicksort(LinkedList<Integer> S) {
         int n = S.size();
-        if (n < 2)      // divide
+        if (n < 2)      // Divide
             return;
         Integer pivot = S.getFirst();
         LinkedList<Integer> Less = new LinkedList<>();
@@ -15,11 +15,11 @@ public class Quicksort {
         while (!S.isEmpty()) {
             Integer next = S.remove();
             if (next < pivot)
-                Less.add(next);
-            else if (next == pivot)
-                Equal.add(next);
+                Less.add(next);             // Add to less list if pivot is greater
+            else if (next.equals(pivot))
+                Equal.add(next);            // Add to Equal list if equal to pivot
             else
-                Greater.add(next);
+                Greater.add(next);          // Add to Greater list if pivot is less
         }
         quicksort(Less);      // conquer the Less list
         quicksort(Greater);   // Conquer the Greater list
