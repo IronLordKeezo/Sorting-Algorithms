@@ -45,7 +45,7 @@ public class Driver {
 
         System.out.println("Time taken to quicksortInPlace: " + (end-start) + " ns");
         System.out.println("Time taken to quicksortInPlace: " + (end-start)/1000000 + " ms");
-        System.out.println("////////////////////////////////////////////");
+        System.out.println();
         System.out.println("Time taken to quicksort: " + (end2-start2) + " ns");
         System.out.println("Time taken to quicksort: " + (end2-start2)/1000000 + " ms");
 
